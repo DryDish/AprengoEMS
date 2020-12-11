@@ -12,7 +12,7 @@
     <artifactId>api</artifactId>
     <version>0.0.1</version>
     <name>api</name>
-    <description>A Rest API for the employee managment system for Aprengo</description>
+    <description>A Rest API for the employee management system for Aprengo</description>
 
     <properties>
         <java.version>11</java.version>
@@ -34,6 +34,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>2.4.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>
