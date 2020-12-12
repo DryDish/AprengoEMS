@@ -14,28 +14,28 @@ public class EmployeeController
     private EmployeeRepo employeeRepo;
 
     @GetMapping("/employees")
-    public List<Employee> all()
+    public List<Employee> findAll()
     {
         return employeeRepo.findAll();
     }
 
-    @PostMapping("/employees")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Employee newEmployee(@RequestBody Employee newEmployee)
-    {
-        return employeeRepo.save(newEmployee);
-    }
-
     @GetMapping("/employees/{id}")
-    public Employee one(@PathVariable Long id)
+    public Employee findOne(@PathVariable Long id)
     {
         return employeeRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Failed to find an employee with an ID of " + id));
     }
 
+    @PostMapping("/employees")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Employee create(@RequestBody Employee newEmployee)
+    {
+        return employeeRepo.save(newEmployee);
+    }
+
     @PutMapping("/employees/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id)
+    public Employee update(@RequestBody Employee newEmployee, @PathVariable Long id)
     {
         return employeeRepo.findById(id)
                 .map(employee -> {
@@ -53,7 +53,7 @@ public class EmployeeController
 
     @DeleteMapping("/employees/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deleteEmployee(@PathVariable Long id)
+    public void delete(@PathVariable Long id)
     {
         if (!employeeRepo.existsById(id))
         {
