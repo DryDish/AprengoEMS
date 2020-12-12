@@ -42,6 +42,7 @@ public class EmployeeController
                     employee.setFirstName(newEmployee.getFirstName());
                     employee.setLastName(newEmployee.getLastName());
                     employee.setPhoneNumber(newEmployee.getPhoneNumber());
+                    employee.setHoursWorked(newEmployee.getHoursWorked());
                     return employeeRepo.save(employee);
                 })
                 .orElseGet(() -> {

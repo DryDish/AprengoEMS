@@ -24,6 +24,10 @@ public class Employee
     @Column(name = "phone_number", length = 15)
     private String phoneNumber;
 
+    @Basic
+    @Column(name = "hours_worked", columnDefinition = "integer default 0")
+    private int hoursWorked;
+
     public long getId()
     {
         return id;
@@ -64,6 +68,16 @@ public class Employee
         this.phoneNumber = phoneNumber;
     }
 
+    public int getHoursWorked()
+    {
+        return hoursWorked;
+    }
+
+    public void setHoursWorked(int hoursWorked)
+    {
+        this.hoursWorked = hoursWorked;
+    }
+
     @Override
     public boolean equals(Object o)
     {
@@ -71,6 +85,7 @@ public class Employee
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
         return id == employee.id &&
+                hoursWorked == employee.hoursWorked &&
                 Objects.equals(firstName, employee.firstName) &&
                 Objects.equals(lastName, employee.lastName) &&
                 Objects.equals(phoneNumber, employee.phoneNumber);
@@ -79,6 +94,6 @@ public class Employee
     @Override
     public int hashCode()
     {
-        return Objects.hash(id, firstName, lastName, phoneNumber);
+        return Objects.hash(id, firstName, lastName, phoneNumber, hoursWorked);
     }
 }
