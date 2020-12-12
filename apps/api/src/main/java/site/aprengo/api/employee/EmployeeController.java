@@ -1,46 +1,47 @@
 package site.aprengo.api.employee;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import site.aprengo.api.exceptionhandling.ResourceNotFoundException;
 
 import java.util.List;
 
 @RestController
 public class EmployeeController
 {
-    private final EmployeeRepo employeeRepo;
-
-    EmployeeController(EmployeeRepo repository)
-    {
-        this.employeeRepo = repository;
-    }
+    @Autowired
+    private EmployeeRepo employeeRepo;
 
     @GetMapping("/employees")
-    List<Employee> all()
+    public List<Employee> all()
     {
         return employeeRepo.findAll();
     }
 
     @PostMapping("/employees")
-    Employee newEmployee(@RequestBody Employee newEmployee)
+    @ResponseStatus(HttpStatus.CREATED)
+    public Employee newEmployee(@RequestBody Employee newEmployee)
     {
         return employeeRepo.save(newEmployee);
     }
 
     @GetMapping("/employees/{id}")
-    Employee one(@PathVariable Long id)
+    public Employee one(@PathVariable Long id)
     {
         return employeeRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException());
+                .orElseThrow(() -> new ResourceNotFoundException("Failed to find an employee with an ID of " + id));
     }
 
     @PutMapping("/employees/{id}")
-    Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id)
     {
-
         return employeeRepo.findById(id)
                 .map(employee -> {
                     employee.setFirstName(newEmployee.getFirstName());
                     employee.setLastName(newEmployee.getLastName());
+                    employee.setPhoneNumber(newEmployee.getPhoneNumber());
                     return employeeRepo.save(employee);
                 })
                 .orElseGet(() -> {
@@ -50,8 +51,13 @@ public class EmployeeController
     }
 
     @DeleteMapping("/employees/{id}")
-    void deleteEmployee(@PathVariable Long id)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void deleteEmployee(@PathVariable Long id)
     {
+        if (!employeeRepo.existsById(id))
+        {
+            throw new ResourceNotFoundException("Failed to find an employee with an ID of " + id);
+        }
         employeeRepo.deleteById(id);
     }
 }
