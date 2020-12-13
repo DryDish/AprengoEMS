@@ -1,0 +1,23 @@
+.createPage {
+    width: 100%; 
+    background-color: white;
+    padding: 40px;
+    margin-top: 1px;
+    min-height: 58.7%;
+}
+  
+.responsive {
+    height: 3.2vh;
+}
+  
+.get-signed {
+    background-color: white;
+    min-height: 58.7%;
+}
+
+/* Chrome, Safari, Edge, Opera */
+#phoneInput::-webkit-outer-spin-button,
+#phoneInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
