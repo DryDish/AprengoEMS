@@ -4,46 +4,51 @@ import { MDBInput, MDBBtn } from "mdbreact";
 import '../css/styles.css';
 import httpService from '../../services/httpService';
 
-function CreateEmployee() {
-    
+function CreateEmployee() 
+{
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [minutesWorked, setMinutesWorked] = useState('');
 
-    const updateInfo = (type, text) => {
-        if (type === 'firstName'){
-            setFirstName(text);
-        } else if (type === 'lastName'){
-            setLastName(text);
-        } else if (type === 'phoneNumber'){
-            setPhoneNumber(text);
-        } else if (type === 'minutesWorked'){
-            setMinutesWorked(text);
-        }
+    const updateInfo = (type, text) => 
+    {
+        if (type === 'firstName'){ setFirstName(text); } 
+        else if (type === 'lastName'){ setLastName(text); } 
+        else if (type === 'phoneNumber'){ setPhoneNumber(text); } 
+        else if (type === 'minutesWorked') { setMinutesWorked(text); }
     }
 
-    const getInMin = () => {
+    const getInMin = () => 
+    {
         return minutesWorked * 60; 
     }
 
-    const create = () => {
-        
-        if(firstName===''){
+    const create = () => 
+    {
+        if(firstName==='')
+        {
             alert(`You are missing First Name`)
             return;
-        } else if (lastName==='') {
+        } 
+        else if (lastName==='') 
+        {
             alert(`You are missing Last Name`)
             return;
-        } else if (phoneNumber==='') {
+        } 
+        else if (phoneNumber==='') 
+        {
             alert(`You are missing Phone Number`)
             return;
-        } else if (minutesWorked==='') {
+        } 
+        else if (minutesWorked==='') 
+        {
             alert(`You are missing Weekly Workhours`)
             return;
         }
 
-        const newEmp = {
+        const newEmp = 
+        {
             firstName: firstName,
             lastName: lastName,
             phoneNumber: phoneNumber,
@@ -52,14 +57,13 @@ function CreateEmployee() {
 
         httpService
             .post("/employees",newEmp)
-            .then((response) => {
+            .then((response) => 
+            {
                 console.log(response)
                 console.log('emplyee added: ' + firstName + ' ' + lastName)
                 //window.location.reload(false);  Can be used to reload the page after submitting a new employee
             })
-            .catch( (e) => {
-                console.log(e)
-            });
+            .catch( (e) => { console.log(e) });
     }
 
     return (
