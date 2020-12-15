@@ -19,9 +19,9 @@ function CreateEmployee()
         else if (type === 'minutesWorked') { setMinutesWorked(text); }
     }
 
-    const getInMin = () => 
+    const getInMin = (hoursWorked) => 
     {
-        return minutesWorked * 60; 
+        return hoursWorked * 60; 
     }
 
     const create = () => 
@@ -67,7 +67,7 @@ function CreateEmployee()
     }
 
     return (
-        <div className="createPage">
+        <div className="createPage" data-testid="createEmployee">
             <Container>
                 <Row style={{paddingTop: '7%'}}>
                     <Col xs={0} md={2} lg={3}></Col>
@@ -79,7 +79,7 @@ function CreateEmployee()
                             onChange={e => updateInfo('lastName', e.target.value)} value={lastName} />
                         <MDBInput label="Phone Number" type="number" id="phoneInput"
                             onChange={e => updateInfo('phoneNumber', e.target.value)} value={phoneNumber} />
-                        <MDBInput label="Weekly Workhours" type="number" step="0.25"
+                        <MDBInput label="Weekly Workhours" type="number" step="0.25" data-testid='getHoursWorkedInMinutes'
                             onChange={e => updateInfo('minutesWorked', e.target.value)} value={minutesWorked} />
 
                         <div className="text-center">

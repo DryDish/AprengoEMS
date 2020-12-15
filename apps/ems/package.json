@@ -5,12 +5,16 @@
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
+    "@testing-library/react-hooks": "^3.7.0",
     "@testing-library/user-event": "^12.5.0",
+    "jest-dom": "^4.0.0",
     "mdbreact": "^5.0.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
+    "react-test-render": "^1.1.2",
+    "react-test-renderer": "^17.0.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

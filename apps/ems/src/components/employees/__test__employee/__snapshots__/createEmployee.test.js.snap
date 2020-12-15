@@ -1,0 +1,177 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="createPage"
+  data-testid="createEmployee"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+      style={
+        Object {
+          "paddingTop": "7%",
+        }
+      }
+    >
+      <div
+        className="col-lg-3 col-md-2"
+      />
+      <div
+        className="col-lg-6 col-md-8 col-12"
+      >
+        <h1
+          style={
+            Object {
+              "color": "black",
+            }
+          }
+        >
+          Add Employee
+        </h1>
+        <br />
+        <div
+          className="md-form"
+        >
+          
+          <input
+            aria-disabled={false}
+            className="form-control"
+            data-test="input"
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onInput={[Function]}
+            type="text"
+            value=""
+          />
+          <label
+            aria-labelledby=""
+            className=""
+            data-error=""
+            data-success=""
+            id=""
+            onClick={[Function]}
+          >
+            First Name
+          </label>
+        </div>
+        <div
+          className="md-form"
+        >
+          
+          <input
+            aria-disabled={false}
+            className="form-control"
+            data-test="input"
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onInput={[Function]}
+            type="text"
+            value=""
+          />
+          <label
+            aria-labelledby=""
+            className=""
+            data-error=""
+            data-success=""
+            id=""
+            onClick={[Function]}
+          >
+            Last Name
+          </label>
+        </div>
+        <div
+          className="md-form"
+        >
+          
+          <input
+            aria-disabled={false}
+            className="form-control"
+            data-test="input"
+            disabled={false}
+            id="phoneInput"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onInput={[Function]}
+            type="number"
+            value=""
+          />
+          <label
+            aria-labelledby=""
+            className=""
+            data-error=""
+            data-success=""
+            htmlFor="phoneInput"
+            id=""
+            onClick={[Function]}
+          >
+            Phone Number
+          </label>
+        </div>
+        <div
+          className="md-form"
+        >
+          
+          <input
+            aria-disabled={false}
+            className="form-control"
+            data-test="input"
+            data-testid="getHoursWorkedInMinutes"
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onInput={[Function]}
+            step="0.25"
+            type="number"
+            value=""
+          />
+          <label
+            aria-labelledby=""
+            className=""
+            data-error=""
+            data-success=""
+            id=""
+            onClick={[Function]}
+          >
+            Weekly Workhours
+          </label>
+        </div>
+        <div
+          className="text-center"
+        >
+          <button
+            className="btn-dark btn Ripple-parent"
+            data-test="button"
+            onClick={[Function]}
+            onMouseUp={[Function]}
+            onTouchStart={[Function]}
+            type="button"
+          >
+            Create Employee
+            <div
+              className="Ripple "
+              data-test="waves"
+              style={
+                Object {
+                  "height": "0px",
+                  "left": "0px",
+                  "top": "0px",
+                  "width": "0px",
+                }
+              }
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
