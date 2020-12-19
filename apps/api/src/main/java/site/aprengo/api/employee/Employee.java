@@ -28,17 +28,20 @@ public class Employee
     @Column(name = "minutes_worked", columnDefinition = "integer default 0")
     private int minutesWorked;
 
-    public Employee() {}
-    
-    public Employee(String firstName, String lastName, String phoneNumber, int minutesWorked) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.phoneNumber = phoneNumber;
-		this.minutesWorked = minutesWorked;
-	}
+    public Employee()
+    {
+    }
 
-	public long getId()
+    public Employee(String firstName, String lastName, String phoneNumber, int minutesWorked)
+    {
+        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.minutesWorked = minutesWorked;
+    }
+
+    public long getId()
     {
         return id;
     }
