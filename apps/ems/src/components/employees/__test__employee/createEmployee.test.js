@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom'; 
 
 import '@testing-library/jest-dom/extend-expect.js';
-import renderer from 'react-test-renderer'
+import renderer from 'react-test-renderer';
 import CreateEmployee from '../createEmployee';
 
 afterEach(cleanup); 

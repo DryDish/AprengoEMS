@@ -14,19 +14,17 @@ export default class EmployeeList extends React.Component
             employees: [],
         };
     }
-
-    getEmployeeList()
-    {
-        //TODO Make sure this works once Jan's API is done
+    getEmployeeList() {
         httpService
             .get("/employees")
             .then((response) =>
             {
+                console.log("getEmployeeList Response :");
                 console.log(response.data);
+
                 this.setState({
                     employees: response.data,
                 });
-                console.log("getEmployeeList Response :");
             })
             .catch((e) =>
             {
@@ -44,14 +42,6 @@ export default class EmployeeList extends React.Component
         const employeeList = this.state.employees.map((employee, index) =>
         {
             return (
-                // <li key={index}>   Sorry cris
-                //     <div>
-                //         <p>Employee ID : {employee.id}</p>
-                //         <p>{`Name : ${employee.firstName} ${employee.lastName}`}</p>
-                //         <p>Phone Number : {employee.phoneNumber}</p>
-                //         <p>Worked hours : {convertMinutesToHours(employee.minutesWorked)}</p>
-                //     </div>
-                // </li>
                 <Container>
                     <Row key={index}>
                         <Col xs={1}>{employee.id}</Col>
@@ -64,7 +54,7 @@ export default class EmployeeList extends React.Component
         });
 
         return (
-            <div className="col-" style={{width: "80%", margin: "auto"}}>
+            <div className="col-" data-testid={"employeeList"} style={{width: "80%", margin: "auto"}}>
                 <h3 style={{fontWeight:"bold"}}>Employee List</h3><br/>
                 <Container>
                     <Row style={{fontWeight: "Bold"}}>

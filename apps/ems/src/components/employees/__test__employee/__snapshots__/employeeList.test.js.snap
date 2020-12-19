@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Matches the snapshot 1`] = `
+<div
+  className="col-"
+  data-testid="employeeList"
+  style={
+    Object {
+      "margin": "auto",
+      "width": "80%",
+    }
+  }
+>
+  <h3
+    style={
+      Object {
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Employee List
+  </h3>
+  <br />
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+      style={
+        Object {
+          "fontWeight": "Bold",
+        }
+      }
+    >
+      <div
+        className="col-1"
+      >
+        ID
+      </div>
+      <div
+        className="col"
+      >
+        Full Name
+      </div>
+      <div
+        className="col"
+      >
+        Phone Number
+      </div>
+      <div
+        className="col-2"
+      >
+        Hours
+      </div>
+    </div>
+  </div>
+  <hr />
+  <ul
+    className="list-group"
+  />
+</div>
+`;
