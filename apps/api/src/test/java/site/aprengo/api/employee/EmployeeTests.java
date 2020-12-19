@@ -1,12 +1,18 @@
 package site.aprengo.api.employee;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class EmployeeTests
 {
-
     @Test
     void testEmployee()
     {
@@ -148,4 +154,50 @@ class EmployeeTests
         Assertions.assertThat(testEmpMinutesWorkedNew).isEqualTo(2);
     }
 
+    private static Stream<Arguments> equalsArguments()
+    {
+        return Stream.of(
+                Arguments.of(new Employee("firstName", "lastName", "phoneNumber", 1),
+                        new Employee("firstName", "lastName", "phoneNumber", 1), true),
+                Arguments.of(new Employee(), new Employee(), true),
+                Arguments.of(new Employee("firstName", "lastName", "phoneNumber", 1),
+                        new Employee("firstName", "lastName", "phoneNumber", 2), false),
+                Arguments.of(new Employee("firstName", "lastName", "phoneNumber", 1),
+                        new Employee("firstName", "lastName", "fake phone number", 1), false),
+                Arguments.of(new Employee("firstName", "lastName", "phoneNumber", 1),
+                        new Employee("firstName", "fake last name", "phoneNumber", 1), false),
+                Arguments.of(new Employee("firstName", "lastName", "phoneNumber", 1),
+                        new Employee("fake first name", "lastName", "phoneNumber", 1), false),
+                Arguments.of(new Employee("firstName", "lastName", "phoneNumber", 1),
+                        new Employee(), false),
+                Arguments.of(new Employee("firstName", "lastName", "phoneNumber", 1),
+                        "new Employee(\"firstName\", \"lastName\", \"phoneNumber\", 1)", false),
+                Arguments.of(new Employee(), "new Employee()", false));
+    }
+
+    @ParameterizedTest
+    @MethodSource("equalsArguments")
+    @DisplayName("Equals() compares objects properly")
+    void equalsTest(Object arg1, Object arg2, boolean expected)
+    {
+        assertThat(arg1.equals(arg2)).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> hashcodeArguments()
+    {
+        return Stream.of(
+                Arguments.of(new Employee("firstName", "lastName", "phoneNumber", 1),
+                        827914223, true),
+                Arguments.of(new Employee("firstName", "lastName", "phoneNumber", 1),
+                        827914223, true),
+                Arguments.of(new Employee(), 28629151, true));
+    }
+
+    @ParameterizedTest
+    @MethodSource("hashcodeArguments")
+    @DisplayName("Hashcode() creates a hash based of the object")
+    void equalsTest(Employee employee, int expected)
+    {
+        assertThat(employee.hashCode()).isEqualTo(expected);
+    }
 }
