@@ -30,14 +30,14 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ExceptionHandler({ConstraintViolationException.class})
     public ResponseEntity<Object> handleBadRequest(final ConstraintViolationException ex, final WebRequest request)
     {
-        final String bodyOfResponse = "Bad Request - Constraint Violation";
+        final String bodyOfResponse = ex.getMessage() == null ? "Bad Request - Constraint Violation" : ex.getMessage();
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
     @ExceptionHandler({DataIntegrityViolationException.class})
     public ResponseEntity<Object> handleBadRequest(final DataIntegrityViolationException ex, final WebRequest request)
     {
-        final String bodyOfResponse = "Bad  Request - Data Integrity Violation";
+        final String bodyOfResponse = ex.getMessage() == null ? "Bad  Request - Data Integrity Violation" : ex.getMessage();
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
@@ -46,7 +46,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                                                                   final HttpHeaders headers, final HttpStatus status,
                                                                   final WebRequest request)
     {
-        final String bodyOfResponse = "Http Message Not Readable";
+        final String bodyOfResponse = ex.getMessage() == null ? "Http Message Not Readable" : ex.getMessage();
         // ex.getCause() instanceof JsonMappingException, JsonParseException // for additional information later on
         return handleExceptionInternal(ex, bodyOfResponse, headers, HttpStatus.BAD_REQUEST, request);
     }
@@ -56,7 +56,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                                                                   final HttpHeaders headers, final HttpStatus status,
                                                                   final WebRequest request)
     {
-        final String bodyOfResponse = "Method Argument Not Valid";
+        final String bodyOfResponse = (ex.getBindingResult().getTarget() != null) ? ex.getBindingResult().getTarget().toString() : "Method Argument Not Valid";
         return handleExceptionInternal(ex, bodyOfResponse, headers, HttpStatus.BAD_REQUEST, request);
     }
 
@@ -74,10 +74,10 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(final HttpRequestMethodNotSupportedException ex,
-                                                                  final HttpHeaders headers, final HttpStatus status,
-                                                                  final WebRequest request)
+                                                                         final HttpHeaders headers, final HttpStatus status,
+                                                                         final WebRequest request)
     {
-        final String bodyOfResponse = "Request Method Not Supported";
+        final String bodyOfResponse = ex.getMessage() == null ? "Request Method Not Supported" : ex.getMessage();
         return handleExceptionInternal(ex, bodyOfResponse, headers, HttpStatus.METHOD_NOT_ALLOWED, request);
     }
 
@@ -86,8 +86,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ExceptionHandler({InvalidDataAccessApiUsageException.class, DataAccessException.class})
     protected ResponseEntity<Object> handleConflict(final RuntimeException ex, final WebRequest request)
     {
-        final String bodyOfResponse = ex.getMessage() ==
-                null ? "Conflict Error - Invalid Data Access Api Usage Exception" : ex.getMessage();
+        final String bodyOfResponse = ex.getMessage() == null ? "Conflict Error - " + ex.getClass().getSimpleName() : ex.getMessage();
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 
@@ -99,7 +98,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     /*500*/ public ResponseEntity<Object> handleInternal(final RuntimeException ex, final WebRequest request)
     {
         logger.error("500 Status Code", ex);
-        final String bodyOfResponse = "Internal Error - " + ex.getClass().getSimpleName();
+        final String bodyOfResponse = ex.getMessage() == null ? "Internal Error - " + ex.getClass().getSimpleName() : ex.getMessage();
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 }
